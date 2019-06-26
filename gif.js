@@ -1,15 +1,27 @@
 $(document).ready(function() {
-    // API Key for GIPHY
-    // Api Key: 7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf
-    // GIPHY request URL
-    
-    //https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf&q=&limit=10&offset=0&rating=PG-13&lang=en
-    
+
+// -------------------------------- GLOBAL VARIABLES------------------------------------------------
+
+// API Key for GIPHY
+// Api Key: 7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf
+var apiKey = '7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf';
+var tvShow = '';
+// GIPHY request URL
+//https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf&q=&limit=10&offset=0&rating=PG-13&lang=en
+var queryUrl = 'https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf&q=' 
+             +  tvShow //or $(tvShow)
+             + '&limit=10&offset=0&rating=PG-13&lang=en'
+    ;
 //save APIkey to variable
 //save GIPHY request URL to a variable
 
 //make a list of 10 initial categories for gifs
+var topics = ['south park', 'parks and recreation','the office', 'arrested development', 
+              'adventure time', 'rick and morty','bojack horseman','the simpsons','30 rock'];
 //create buttons for each list item
+for(var i = 0; i < topics.length; i++) {
+    
+};
 //display buttons at the top of the page
 
 //when button is clicked
