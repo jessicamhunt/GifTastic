@@ -19,8 +19,16 @@ var queryUrl = 'https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbe
 var topics = ['south park', 'parks and recreation','the office', 'arrested development', 
               'adventure time', 'rick and morty','bojack horseman','the simpsons','30 rock'];
 //create buttons for each list item
-for(var i = 0; i < topics.length; i++) {
-    
+function createButton(){
+
+    for(var i = 0; i < topics.length; i++) {
+    //   $("#display-buttons").empty();
+      var buttonName = $("<button>");
+      buttonName.addClass("show");
+      buttonName.attr("show-name", topics[i]);  
+      buttonName.text(topics[i]);
+      $("#display-buttons").append(buttonName);
+    };
 };
 //display buttons at the top of the page
 
@@ -41,5 +49,8 @@ for(var i = 0; i < topics.length; i++) {
 //when the user clicks on the new button
 //the button should display 10 gifs related to their search
 
+// ----------------------------------------FUNCTION CALLS-------------------------------------------
+
+createButton()
 
 });
