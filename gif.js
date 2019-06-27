@@ -8,10 +8,9 @@ var apiKey = '7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf';
 var tvShow = '';
 // GIPHY request URL
 //https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf&q=&limit=10&offset=0&rating=PG-13&lang=en
-var queryUrl = 'https://api.giphy.com/v1/gifs/search?api_key=7vUfrLQpKYQim7mTbbeHRt8iuv9URaZf&q=' 
-             +  tvShow //or $(tvShow)
-             + '&limit=10&offset=0&rating=PG-13&lang=en'
-    ;
+var queryUrl = 
+'https://api.giphy.com/v1/gifs/search?q=cheeseburgers&api_key='+ apiKey + '&limit=10&offset=0&rating=PG-13&lang=en';
+
 //save APIkey to variable
 //save GIPHY request URL to a variable
 
@@ -26,13 +25,19 @@ function createButton(){
       var buttonName = $("<button>");
       buttonName.addClass("show");
       buttonName.attr("show-name", topics[i]);  
+      //display buttons at the top of the page
       buttonName.text(topics[i]);
       $("#display-buttons").append(buttonName);
     };
 };
-//display buttons at the top of the page
 
 //when button is clicked
+$.ajax({
+    url: queryUrl,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+  });
 //display 10 gifs from the GIPHY API according to the category of that button
 //display rating for each gif
 //gifs should be paused once they are loaded to the page
