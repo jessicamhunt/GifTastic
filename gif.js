@@ -34,27 +34,49 @@ function displayGif() {
         url: queryUrl,
         method: "GET"
     }).then(function(response) {
-        console.log('response' + response);
+        console.log(response);
+       
         //variable to hold results
         var results = response.data;
         console.log(results);
 
+
+        //creating div containing gif and rating for each item in results array
         for(var i = 0; i < results.length; i++) {
 
             //div to hold gif and rating content
             var gifContent = $('<div class="gif-content">');
             console.log('gif content' + gifContent);
             
-            //variable to hold gif
-            var gif = results[i].images.original.url;
+            //variable to hold gif still url
+            var gif = results[i].images.downsized_still.url;
             console.log(gif);
+            
+            //variable to hold animated gif url
+            var gifAnimate = results[i].images.downsized.url;
+            console.log(gifAnimate);
             
             // variable to show gif
             var gifDisplay = $('<img>')
             console.log(gifDisplay);
             
+            // add gif class to images
+            gifDisplay.addClass("gif");
+
+            //setting source url for gif images
             gifDisplay.attr("src", gif);
-            gifDisplay.attr("alt", "tv gif")
+
+            //set attribute for still state
+            gifDisplay.attr("data-state", "still");
+
+            //set attribute for data-animate
+            gifDisplay.attr("data-animate", gifAnimate);
+
+            //set state for data-still
+            gifDisplay.attr("data-still", gif);
+
+            gifDisplay.attr("alt", "tv gif");
+
             //append gif to gifContent div
             gifContent.append(gifDisplay);
             
@@ -73,10 +95,10 @@ function displayGif() {
             $('#gif-display').prepend(gifContent);    
         }
     });
+
 }    
 // console.log(displayGif());
 // displayGif();
-
 
 //create buttons for each list item
 function createButton(){
@@ -84,14 +106,12 @@ function createButton(){
     $("#display-buttons").empty();
     
     for(var i = 0; i < topics.length; i++) {
-      
+        
         var buttonName = $("<button>");
-      
+        
         buttonName.addClass("show");
-      
+        
         buttonName.attr("show-name", topics[i]);  
-      
-        //display buttons at the top of the page
       
         buttonName.text(topics[i]);
      
@@ -102,34 +122,32 @@ function createButton(){
 //click event functions
 $("#add-show").on("click", function(e) {
     e.preventDefault();
-    // This line grabs the input from the textbox
+    // grab input from textbox
     var show = $("#input-show").val().trim();
 
-    // Adding show from the textbox to our array
+    // Adding show from the textbox array
     topics.push(show);
 
-    // Calling renderButtons which handles the processing of our movie array
+    // fuction call to handle buttons in movie array
     createButton();
 });
+
+//trying to figure out how to make this piece work in my code
+// $(".gif").on("click", function(e) {
+//     e.preventDefault();
+//     var state = $(this).attr("data-state");
+//     if (state === "still") {
+//       $(this).attr("src", $(this).attr("data-animate"));
+//       $(this).attr("data-state", "animate");
+//     } else {
+//       $(this).attr("src", $(this).attr("data-still"));
+//       $(this).attr("data-state", "still");
+//     }
+//   });
 
  // add click function for buttons on page
 $(document).on("click", ".show", displayGif);
 
-//display 10 gifs from the GIPHY API according to the category of that button
-//display rating for each gif
-//gifs should be paused once they are loaded to the page
-//gifs should play only when their image is clicked
-//gifs should paused if clicked again.
-
-//when a different button is clicked
-// clear the gifs from the last button click
-//replace with 10 gifs related to the current button click
-
-//when user submits a search
-//an additional button is created
-//button should display at the end of the list with a name equal to the text of their search. 
-//when the user clicks on the new button
-//the button should display 10 gifs related to their search
 
 // ----------------------------------------FUNCTION CALLS-------------------------------------------
 
